@@ -23,41 +23,41 @@ We need to add maven dev tools to the path environment variable so that we can b
 
 To be able to veiw the current path settings, we use the print command or the echo command 
 
-echo "$PATH"
+> echo "$PATH"
 
 or
 
-printf "%s\n" $PATH
+> printf "%s\n" $PATH
 
 ### Change your PATH Ennvironmennt Variable from the Terminal
 
 Type the following command to open the current set path environment variable in edit mode
 
-nano ~/.zshrc
+> nano ~/.zshrc
 
 Append the following export command 
 
-export PATH=$PATH:path/to/mavin/bin/folder
+> export PATH=$PATH:path/to/mavin/bin/folder
 
 Save changes on nano
 
-Control + o
+> Control + o
 
 Exit nano
 
-Control + x
+> Control + x
 
 Apply the changes immediately  using the following command on the terminal 
 
-source ~/.zshrc
+> source ~/.zshrc
 
 Confirm that maven has been added to path environment variable
 
-echo $PATH
+> echo $PATH
 
 Check maven version installed
 
-mvn -v
+> mvn -v
 
 ## Create Java Application
 
