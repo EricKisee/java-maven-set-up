@@ -61,3 +61,86 @@ Check maven version installed
 
 ## Create Java Application
 
+Create a project directory of your choice. In that directory, create a subdirectory with the  following structure:
+
+>  src/main/java/hello
+
+In the hello directory, create the following class
+
+```java
+
+package main.java.hello;
+
+public class Hello {
+    public static void main(String[] args) {
+        System.out.println("Hello World from Maven");
+    }
+}
+
+```
+
+##  Define a Maven build
+
+Create a pom.xml file in the  root project directory i.e. next to src  folder and paste  the following
+
+```xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.erickisee</groupId>
+    <artifactId>java-maven-set-up</artifactId>
+    <packaging>jar</packaging>
+    <version>0.1.0</version>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.4</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer
+                                    implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>main.java.hello.Hello</mainClass>
+                                </transformer>
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+
+```
+## Build Java Code
+
+To compile the java code, execute the following on the terminal in the root  project directory
+
+> mvn compile
+
+The result  is a compiled .class file in the target/class folder
+
+To package the code into a JAR file, execute the following
+
+> mvn package
+
+To execute the JAR file, run 
+
+>java -jar target/java-maven-set-up-0.1.0.jar
+
